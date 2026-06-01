@@ -1,0 +1,798 @@
+/* tailwindcss */
+@tailwind base;
+/* tailwindcss */
+@tailwind components;
+/* tailwindcss */
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --new-arrival-glow: rgba(59, 130, 246, 0.3);
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #F8FAFC;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  /* Hide scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar hide */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom scrollbar responsive - hide on mobile, show on desktop */
+.scrollbar-responsive {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-responsive::-webkit-scrollbar {
+  display: none;
+}
+
+/* Show scrollbar on desktop (md breakpoint and above) */
+@media (min-width: 768px) {
+  .scrollbar-responsive {
+    -ms-overflow-style: auto;
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-responsive::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+  }
+
+  .scrollbar-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .scrollbar-responsive::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+
+  .scrollbar-responsive::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+}
+
+/* Nano stylish scrollbar for admin panel */
+.scrollbar-nano {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.scrollbar-nano::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-nano::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.scrollbar-nano::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(156, 163, 175, 0.6) 0%, rgba(107, 114, 128, 0.6) 100%);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.scrollbar-nano::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(107, 114, 128, 0.8) 0%, rgba(75, 85, 99, 0.8) 100%);
+  width: 6px;
+}
+
+.scrollbar-nano::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, rgba(75, 85, 99, 0.9) 0%, rgba(55, 65, 81, 0.9) 100%);
+}
+
+/* Horizontal nano scrollbar */
+.scrollbar-nano::-webkit-scrollbar:horizontal {
+  height: 4px;
+}
+
+.scrollbar-nano::-webkit-scrollbar-thumb:horizontal:hover {
+  height: 6px;
+}
+
+/* Admin panel specific scrollbar - slightly thicker for better visibility */
+.scrollbar-admin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(124, 58, 237, 0.4) transparent;
+}
+
+.scrollbar-admin::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.scrollbar-admin::-webkit-scrollbar-track {
+  background: rgba(243, 244, 246, 0.5);
+  border-radius: 10px;
+  margin: 2px;
+}
+
+.scrollbar-admin::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.5) 0%, rgba(167, 139, 250, 0.5) 100%);
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scrollbar-admin::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.7) 0%, rgba(167, 139, 250, 0.7) 100%);
+  width: 7px;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.3);
+}
+
+.scrollbar-admin::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.9) 0%, rgba(167, 139, 250, 0.9) 100%);
+}
+
+/* Horizontal admin scrollbar */
+.scrollbar-admin::-webkit-scrollbar:horizontal {
+  height: 5px;
+}
+
+.scrollbar-admin::-webkit-scrollbar-thumb:horizontal:hover {
+  height: 7px;
+}
+
+/* Writing vertical */
+.writing-vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Glassmorphism utilities */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: translateZ(0);
+    will-change: backdrop-filter;
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateZ(0);
+    will-change: backdrop-filter;
+  }
+
+  .glass-card {
+    background: #ffffff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    transform: translateZ(0);
+    will-change: backdrop-filter;
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  }
+
+  .gradient-red {
+    background: linear-gradient(135deg, #EF4444 0%, #F97316 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+  }
+
+  .shadow-glow-green {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+
+  .shadow-glow-red {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+
+  .shadow-glow-accent {
+    box-shadow: 0 0 20px rgba(255, 225, 27, 0.3);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* GPU acceleration utilities */
+  .gpu-accelerate {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .gpu-accelerate-opacity {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+
+  .gpu-accelerate-all {
+    transform: translateZ(0);
+    will-change: transform, opacity, filter;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .shimmer {
+    animation: none !important;
+  }
+
+  .hover-lift {
+    transition: none !important;
+  }
+}
+
+/* Performance optimizations */
+@layer utilities {
+  .optimize-animation {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .optimize-scroll {
+    will-change: scroll-position;
+    transform: translateZ(0);
+  }
+}
+
+/* ==========================================
+   Dark Theme Overrides — Red & Black
+   ========================================== */
+html.dark {
+  color-scheme: dark;
+  --new-arrival-glow: rgba(123, 10, 10, 0.25);
+}
+
+html.dark body {
+  background-color: #0D0D0D !important;
+  color: #FFFFFF !important;
+}
+
+/* General card and component backgrounds */
+html.dark .bg-white {
+  background-color: #1A1A1A !important;
+  /* Card background */
+}
+
+html.dark .bg-gray-50,
+html.dark .bg-slate-50,
+html.dark .bg-background {
+  background-color: #0D0D0D !important;
+  /* Primary background */
+}
+
+html.dark .bg-gray-100,
+html.dark .bg-slate-100 {
+  background-color: #141414 !important;
+  /* Secondary background */
+}
+
+html.dark .bg-gray-200,
+html.dark .bg-slate-200 {
+  background-color: #1E1E1E !important;
+  /* Tertiary background */
+}
+
+html.dark .bg-gray-300,
+html.dark .bg-slate-300 {
+  background-color: #222222 !important;
+  /* Elevated background */
+}
+
+html.dark .bg-gray-400,
+html.dark .bg-slate-400 {
+  background-color: #2A2A2A !important;
+  /* Focus/More elevated background */
+}
+
+html.dark .bg-primary-50 {
+  background-color: rgba(123, 10, 10, 0.12) !important;
+  /* Red tint background */
+}
+
+/* Glassmorphism overrides */
+html.dark .glass {
+  background: rgba(20, 20, 20, 0.80) !important;
+  border-color: rgba(123, 10, 10, 0.15) !important;
+}
+
+html.dark .glass-dark {
+  background: rgba(13, 13, 13, 0.90) !important;
+  border-color: rgba(123, 10, 10, 0.10) !important;
+}
+
+html.dark .glass-card {
+  background: #000000 !important;
+  border: 1px solid #7B0A0A !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Text overrides */
+html.dark .text-gray-900,
+html.dark .text-slate-900 {
+  color: #FFFFFF !important;
+  /* Primary text white */
+}
+
+html.dark .text-gray-800,
+html.dark .text-slate-800 {
+  color: #F0F0F0 !important;
+  /* Near-white text */
+}
+
+html.dark .text-gray-700,
+html.dark .text-slate-700 {
+  color: #D1D1D1 !important;
+  /* Secondary text */
+}
+
+html.dark .text-gray-600,
+html.dark .text-slate-600 {
+  color: #AAAAAA !important;
+  /* Muted secondary text */
+}
+
+html.dark .text-gray-500,
+html.dark .text-slate-500 {
+  color: #888888 !important;
+  /* Muted text */
+}
+
+html.dark .text-gray-400,
+html.dark .text-slate-400 {
+  color: #666666 !important;
+  /* Very muted placeholder text */
+}
+
+html.dark .text-gray-300,
+html.dark .text-slate-300 {
+  color: #AAAAAA !important;
+}
+
+/* Border overrides */
+html.dark .border-gray-50,
+html.dark .border-slate-50,
+html.dark .border-gray-100,
+html.dark .border-slate-100,
+html.dark .border-gray-200,
+html.dark .border-slate-200,
+html.dark .border-gray-300,
+html.dark .border-slate-300,
+html.dark .border-accent-200\/30 {
+  border-color: rgba(123, 10, 10, 0.20) !important;
+  /* Subtle red borders */
+}
+
+/* Divide borders */
+html.dark .divide-gray-100>*+*,
+html.dark .divide-gray-200>*+*,
+html.dark .divide-slate-200>*+* {
+  border-color: rgba(123, 10, 10, 0.15) !important;
+}
+
+/* Hover overrides */
+html.dark .hover\:bg-gray-50:hover,
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-gray-100:hover,
+html.dark .hover\:bg-slate-100:hover,
+html.dark .hover\:bg-gray-200:hover,
+html.dark .hover\:bg-slate-200:hover {
+  background-color: #222222 !important;
+  /* Elevated hover background */
+}
+
+/* Input, Textarea, Select field overrides */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #141414 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(123, 10, 10, 0.20) !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #666666 !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: #7B0A0A !important;
+  box-shadow: 0 0 0 2px rgba(123, 10, 10, 0.25) !important;
+  outline: none !important;
+}
+
+html.dark .focus\:ring-primary-500:focus,
+html.dark .focus\:ring-primary-600:focus,
+html.dark .focus\:ring-2:focus {
+  --tw-ring-color: rgba(123, 10, 10, 0.5) !important;
+  border-color: #7B0A0A !important;
+}
+
+html.dark .focus\:ring-offset-2:focus {
+  --tw-ring-offset-color: #0D0D0D !important;
+}
+
+/* Image filter to invert black logo in dark theme */
+html.dark img[src*="PLEblack"] {
+  filter: invert(1) brightness(1.5);
+}
+
+/* Flash sale container background override */
+html.dark .from-red-50.to-orange-50 {
+  background-image: linear-gradient(to bottom right, #1A0A0A, #150808) !important;
+}
+
+/* ProductCard image container background override */
+html.dark .from-gray-50.to-gray-100 {
+  background-image: linear-gradient(to bottom right, #141414, #1E1E1E) !important;
+}
+
+/* Light-tinted status/badge background overrides for dark mode */
+html.dark .bg-red-50 {
+  background-color: rgba(123, 10, 10, 0.15) !important;
+}
+
+html.dark .bg-green-50 {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+}
+
+html.dark .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+}
+
+html.dark .bg-yellow-50 {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+}
+
+html.dark .bg-orange-50 {
+  background-color: rgba(249, 115, 22, 0.12) !important;
+}
+
+/* Light-tinted badge text overrides */
+html.dark .text-red-800,
+html.dark .text-red-700,
+html.dark .text-red-600 {
+  color: #FF4D4D !important;
+}
+
+html.dark .text-green-800,
+html.dark .text-green-700,
+html.dark .text-green-600 {
+  color: #34D399 !important;
+}
+
+html.dark .text-blue-800,
+html.dark .text-blue-700,
+html.dark .text-blue-600 {
+  color: #60A5FA !important;
+}
+
+html.dark .text-yellow-800,
+html.dark .text-yellow-700,
+html.dark .text-yellow-600 {
+  color: #FBBF24 !important;
+}
+
+html.dark .text-orange-800,
+html.dark .text-orange-700,
+html.dark .text-orange-600 {
+  color: #FB923C !important;
+}
+
+/* Table overrides */
+html.dark table {
+  background-color: #1A1A1A !important;
+}
+
+html.dark thead {
+  background-color: #141414 !important;
+}
+
+html.dark th {
+  background-color: #141414 !important;
+  color: #AAAAAA !important;
+}
+
+html.dark td {
+  border-color: rgba(123, 10, 10, 0.15) !important;
+}
+
+/* Gradient and Glow Overrides for Red-Black Aesthetic */
+html.dark .gradient-primary {
+  background: linear-gradient(135deg, #7B0A0A 0%, #FF4D4D 100%) !important;
+}
+
+html.dark .text-gradient {
+  background: linear-gradient(135deg, #7B0A0A 0%, #FF4D4D 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+html.dark .shadow-glow {
+  box-shadow: 0 0 20px rgba(123, 10, 10, 0.35) !important;
+}
+
+/* Primary, success, emerald, and green buttons in dark mode — Red accent */
+html.dark .bg-primary-600,
+html.dark .bg-primary-500,
+html.dark .gradient-green,
+html.dark .bg-green-600,
+html.dark .bg-green-500,
+html.dark .bg-emerald-600,
+html.dark .bg-emerald-500,
+html.dark .bg-success-600,
+html.dark .bg-success-500 {
+  background: #7B0A0A !important;
+  background-color: #7B0A0A !important;
+  box-shadow: 0 0 12px rgba(123, 10, 10, 0.40) !important;
+  border-color: transparent !important;
+  color: #FFFFFF !important;
+}
+
+html.dark .hover\:bg-primary-700:hover,
+html.dark .hover\:bg-primary-600:hover,
+html.dark .gradient-green:hover,
+html.dark .hover\:bg-green-700:hover,
+html.dark .hover\:bg-green-600:hover,
+html.dark .hover\:bg-emerald-700:hover,
+html.dark .hover\:bg-emerald-600:hover,
+html.dark .hover\:bg-success-700:hover,
+html.dark .hover\:bg-success-600:hover {
+  background: #AE020B !important;
+  background-color: #AE020B !important;
+  box-shadow: 0 0 18px rgba(123, 10, 10, 0.60) !important;
+}
+
+/* Scrollbar dark theme overrides */
+@media (min-width: 768px) {
+  html.dark .scrollbar-responsive::-webkit-scrollbar-track {
+    background: #0D0D0D !important;
+  }
+
+  html.dark .scrollbar-responsive::-webkit-scrollbar-thumb {
+    background: #2A2A2A !important;
+    border-radius: 4px !important;
+  }
+
+  html.dark .scrollbar-responsive::-webkit-scrollbar-thumb:hover {
+    background: #333333 !important;
+  }
+}
+
+/* Nano scrollbar overrides */
+html.dark .scrollbar-nano::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(123, 10, 10, 0.4) 0%, rgba(180, 20, 25, 0.4) 100%) !important;
+}
+
+html.dark .scrollbar-nano::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(123, 10, 10, 0.6) 0%, rgba(180, 20, 25, 0.6) 100%) !important;
+}
+
+/* Admin scrollbar overrides */
+html.dark .scrollbar-admin::-webkit-scrollbar-track {
+  background: rgba(20, 20, 20, 0.5) !important;
+}
+
+html.dark .scrollbar-admin::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(123, 10, 10, 0.4) 0%, rgba(123, 10, 10, 0.6) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+html.dark .scrollbar-admin::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(123, 10, 10, 0.6) 0%, rgba(123, 10, 10, 0.8) 100%) !important;
+  box-shadow: 0 0 8px rgba(123, 10, 10, 0.3) !important;
+}
+
+
+/* ==========================================
+   Dark Mode — Primary Color → Red Overrides
+   (Spinners, links, badges, focus rings)
+   ========================================== */
+
+/* Spinner borders */
+html.dark .border-primary-500,
+html.dark .border-primary-600 {
+  border-color: #7B0A0A !important;
+}
+
+/* Text using primary color */
+html.dark .text-primary-600,
+html.dark .text-primary-500,
+html.dark .text-primary-700,
+html.dark .text-primary-400 {
+  color: #7B0A0A !important;
+}
+
+/* Backgrounds using primary tints */
+html.dark .bg-primary-100,
+html.dark .bg-primary-50 {
+  background-color: rgba(123, 10, 10, 0.12) !important;
+}
+
+/* Borders using primary tints */
+html.dark .border-primary-100,
+html.dark .border-primary-200,
+html.dark .border-primary-50 {
+  border-color: rgba(123, 10, 10, 0.25) !important;
+}
+
+/* Hover states for primary tints */
+html.dark .hover\:bg-primary-100:hover,
+html.dark .hover\:bg-primary-50:hover {
+  background-color: rgba(123, 10, 10, 0.20) !important;
+}
+
+/* Focus ring using primary */
+html.dark .focus\:border-primary-500:focus {
+  border-color: #7B0A0A !important;
+}
+
+/* Checked border for radio/checkbox using primary */
+html.dark .checked\:border-primary-500:checked {
+  border-color: #7B0A0A !important;
+}
+
+/* Purple → Red overrides in dark mode (OTP inputs, profile badges) */
+html.dark .border-purple-500,
+html.dark .focus\:border-purple-500:focus {
+  border-color: #7B0A0A !important;
+}
+
+html.dark .bg-purple-500 {
+  background-color: #7B0A0A !important;
+}
+
+html.dark .bg-purple-100,
+html.dark .bg-purple-200,
+html.dark .bg-purple-50 {
+  background-color: rgba(123, 10, 10, 0.12) !important;
+}
+
+html.dark .text-purple-700,
+html.dark .text-purple-600,
+html.dark .text-purple-500 {
+  color: #7B0A0A !important;
+}
+
+/* ==========================================
+   ProductCard inner info section — force dark bg
+   (kept for legacy compatibility)
+   ========================================== */
+html.dark .glass-card .bg-white,
+html.dark .glass-card>div>.bg-white,
+html.dark .glass-card .flex-1.flex.flex-col.bg-white {
+  background-color: #000000 !important;
+}
+
+/* ==========================================
+   ProductCard info section background
+   ========================================== */
+.product-info-bg {
+  background-color: #ffffff;
+}
+
+html.dark .product-info-bg {
+  background-color: #000000 !important;
+}
+
+/* ProductCard image area dark bg */
+html.dark .glass-card .from-gray-50 {
+  --tw-gradient-from: #000000 !important;
+}
+
+html.dark .glass-card .to-gray-100 {
+  --tw-gradient-to: #000000 !important;
+}
+
+/* ProductCard image container — dark bg */
+html.dark .product-img-bg {
+  background: #000000 !important;
+  background-image: none !important;
+}
+
+/* Wishlist button border color override in dark mode */
+html.dark .wishlist-btn {
+  border: 1px solid #7B0A0A !important;
+}
